@@ -1,0 +1,114 @@
+app-cashier-dash {
+
+	.label-md{
+		margin: 0.2rem;
+	}
+	div.scroll-content {
+        margin-right:0;
+        margin-left:0;
+        padding:0;
+    }
+
+    ion-header{
+        ion-buttons{
+            button.logout{
+                padding:1.5em;
+            }
+        }
+    }
+
+    div.input{
+        background:#fff;
+        border:1px solid rgba(0, 0, 0, 0.2);
+        height:100px;
+        font-size:4em;
+        border-radius:5px;
+    }
+
+    div#price {
+        span{
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%, -50%);
+        }
+    }
+
+    #keypad {
+        button.button {
+            width: 31.9%;
+            display: inline-flex;
+            margin: 2px;
+            background: #eee;
+            color: #222;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            height: 100px;
+            transition: background 0.3s;
+            font-size:1.5em;
+
+            &.undo {
+                margin:-2px;
+            }
+
+            &:active{
+                background:map-get($map: $buttons, $key: secondary );
+                transition: background 0.3s;
+            }
+        }
+    }
+    .transaction-card {
+
+        max-height:420px;
+        overflow-y:scroll;
+
+        ion-card-content{
+            padding:0;
+        }
+
+        ion-grid{
+            padding:0;
+
+            ion-row {
+                &.header {
+                    background:rgba(0,0,0,0.2);
+                    padding:0.5em;
+                    font-size:1.2em;
+                    color:#fff;
+                    text-shadow:0 1px 1px rgba(0,0,0,0.5);
+                    font-weight:bold;
+                }
+    
+                .feather-currency-background {
+                    height: 100%;
+                    width: auto;
+                    position: absolute;
+                    right: 0;
+                    z-index: 0;
+                    opacity: 0.1;
+                    top: 0;
+                    max-height: 65px;
+                }
+            }
+        }
+    }
+
+    .details {
+        color:#999;
+        font-style: italic;
+        font-size:0.8em;
+    }
+    
+    .item-input ion-input, .item-input ion-textarea{
+        background: none;
+        border : none;
+    }
+
+    .feather{
+        height : 1em;
+        width: auto;
+        float: left;
+        margin-right:0.1em;
+        margin-top:0.15em;
+    }
+
+}

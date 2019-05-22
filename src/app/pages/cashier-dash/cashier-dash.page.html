@@ -1,0 +1,77 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title start>Hello {{this.cashierName}}</ion-title>
+      <ion-buttons end>
+          <ion-button (click)="doLogout()" class="logout">Logout</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content padding class="background">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-content>
+              <ion-grid>
+                <ion-row>
+                  <ion-col col-4>
+                    <div id="keypad">
+                      <ion-button *ngFor="let key of keys" (click)="concatPrice(key)" >{{key}}</ion-button>
+                      <ion-button (click)="concatPrice('undo')" class="undo"><ion-icon name="arrow-back"></ion-icon></ion-button>
+                    </div>
+                  </ion-col>
+                  <ion-col>
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col>
+                          <div id="price" class="input"><span>{{price}}</span></div>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row>
+                        <ion-col>
+                          <ion-button  expand="block" class="button-primary" [disabled]="isInactive" (click)="startTrans()">Enter</button>
+                        </ion-col>
+                        <ion-col>
+                          <ion-button expand="block" color="clear" (click)="price = ''; isInactive = true">Clear</button>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                    <ion-card class="transaction-card">
+                      <ion-card-content>
+                        <ion-grid>
+                          <ion-row class="header">
+                            <ion-col col-5>Details</ion-col>
+                            <ion-col col-4>Price</ion-col>
+                            <ion-col col-3>Store Credit</ion-col>
+                          </ion-row>   
+                            <ion-row *ngIf="!transactions">
+                              <ion-col text-center padding>
+                                No transactions today.
+                              </ion-col>
+                            </ion-row>
+                            <div *ngIf="transactions" padding>
+                              <ion-row *ngFor="let option of transactions">
+                                <ion-col col-5>
+                                  <h4 style="text-align:left;">Pay Method: {{option.pay_method}}</h4>
+                                  <div class="details">{{option.date}}</div>
+                                </ion-col>
+                                <ion-col col-4>
+                                  ${{option.total_price}}
+                                </ion-col>
+                                <ion-col col-3>
+                                  {{option.tokens_used}}
+                                </ion-col>
+                              </ion-row>
+                            </div>
+                        </ion-grid> 
+                      </ion-card-content>
+                    </ion-card>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>        
+        </ion-col>
+        </ion-row>
+    </ion-grid>
+  </ion-content>

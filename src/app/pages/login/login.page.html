@@ -1,0 +1,48 @@
+<ion-content>
+    <ion-card class="reference-card">
+      <ion-card-header>
+        <img src="assets/img/fc-logo.png">
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="login">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col col-8>
+                      <ion-select *ngIf="loginType == 'Cashier'" [(ngModel)]="cashierId" placeholder="Select Cashier">
+                        <ion-option *ngFor="let option of cashiers" [value]="option.cashier_id">{{option.name}}</ion-option>
+                      </ion-select>
+                      <ion-select *ngIf="loginType == 'Admin'" [(ngModel)]="adminId" placeholder="Select Admin">
+                        <ion-option *ngFor="let option of admins" [value]="option.admin_id">{{option.admin_name}}</ion-option>
+                      </ion-select>
+                    </ion-col>
+                    <ion-col col-4>
+                        <ion-select class="loginType" [(ngModel)]="loginType">
+                        <ion-option value="Cashier">Cashier</ion-option>
+                        <ion-option value="Admin">Admin</ion-option>
+                      </ion-select>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-input type="password" [(ngModel)]="pin" maxLength="4" placeholder="PIN" pattern="[0-9]{4}"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col text-center>
+              <br/>
+              <ion-button class="button button-secondary" (click)="doSignIn()" [disabled]="pin.length != 4 || (!cashierId && !adminId)">SIGN IN</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>    
+      </ion-card-content>
+    </ion-card>
+    <ion-button class="tutorial-button" clear (click)="goToTutorial()">Tutorial</ion-button>
+  </ion-content>
+  
